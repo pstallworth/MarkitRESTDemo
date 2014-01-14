@@ -40,95 +40,56 @@ namespace RESTDemo.Controllers
             StockQuote stock;
             stock = StockQuoteApi.GetStockQuote(symbol);
             stockList.Add(stock);
+
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_stock", stock);
             }
 
-            return PartialView("_stock", "new row");
+            return View("Index", stock);
         }
 
-        public ActionResult Details(int id)
+        [HttpGet]
+        public ActionResult Refresh()
         {
-            return View();
-        }
-
-        //
-        // GET: /Demo/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Demo/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            //This is not the most efficient way of doing this
+            foreach (StockQuote stock in stockList.ToList())
             {
-                // TODO: Add insert logic here
+                string symbol = stock.Symbol;
 
-                return RedirectToAction("Index");
+                StockQuote rstock = (from r in stockList
+                             where r.Symbol == symbol
+                             select r).FirstOrDefault();
+
+                stockList.Remove(rstock);
+                stockList.Add(StockQuoteApi.GetStockQuote(stock.Symbol));
             }
-            catch
+
+            var model = from r in stockList
+                        orderby r.Symbol
+                        select r;
+
+
+            if (Request.IsAjaxRequest())
             {
-                return View();
+                return PartialView("_stocks", model);
             }
+
+            return View("Index", model);
+            
         }
 
-        //
-        // GET: /Demo/Edit/5
-
-        public ActionResult Edit(int id)
+        [HttpDelete]
+        public ActionResult Reset()
         {
-            return View();
+            stockList.Clear();
+
+            //var model = from s in stockList
+            //            select s;
+
+            return RedirectToAction("Index");
         }
 
-        //
-        // POST: /Demo/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Demo/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Demo/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+ 
     }
 }
