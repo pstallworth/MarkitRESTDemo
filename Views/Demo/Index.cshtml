@@ -1,0 +1,27 @@
+﻿@model IEnumerable<RESTDemo.Models.StockQuote>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<fieldset>
+    <legend>StockQuote</legend>
+
+        <div>
+            <form method="get" action="@Url.Action("Index")" data-stock-ajax="true" data-stock-target="#stockList">
+                <input type="submit" value="Refresh" />
+            </form>
+            <form id="addStock" method="post" action="@Url.Action("Add")" data-add-ajax="true" data-stock-target="#stockTable">
+                <input type="search" name="symbol" />
+                <input type="submit" value="Add" />
+            </form>
+        </div>
+ 
+        @Html.Partial("_stocks", Model)
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

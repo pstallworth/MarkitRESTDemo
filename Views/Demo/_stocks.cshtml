@@ -1,0 +1,23 @@
+﻿@model IEnumerable<RESTDemo.Models.StockQuote>
+
+<div id="stockList">
+    <table id="stockTable">
+        <tr>
+            <td>Symbol</td>
+            <td>Last Price</td>
+            <td>Change</td>
+            <td>Change Percent</td>
+            <td>Volume</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Symbol</td>
+                <td>@item.LastPrice</td>
+                <td>@item.Change</td>
+                <td>@item.ChangePercent</td>
+                <td>@item.Volume</td>
+            </tr>
+        }
+    </table>
+</div>

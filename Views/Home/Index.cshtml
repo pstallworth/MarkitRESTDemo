@@ -1,0 +1,121 @@
+﻿@model RESTDemo.Models.StockQuote
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<fieldset>
+    <legend>StockQuote</legend>
+
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Status)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Status)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Symbol)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Symbol)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Change)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Change)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ChangePercent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ChangePercent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Timestamp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Timestamp)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MSDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MSDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MarketCap)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MarketCap)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Volume)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Volume)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ChangeYTD)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ChangeYTD)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ChangePercentYTD)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ChangePercentYTD)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.High)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.High)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Low)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Low)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Open)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Open)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
