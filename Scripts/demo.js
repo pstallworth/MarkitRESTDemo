@@ -52,11 +52,54 @@
         return false;
     }
 
+    var ajaxRemoveRow = function (e) {
+
+        console.log("Inside ajaxRemoveRow");
+        var $table = $(this);
+        var $span = $(e.target);
+        var $col = $span.parent();
+        var sym = $col.siblings('.stock-symbol').html();
+        console.log(sym);
+        var options = {
+            url: $span.attr("data-action"),
+            type: $span.attr("data-stock-method"),
+            data: { "symbol": sym }
+        };
+
+        $.ajax(options).done(function (data) {
+            var $target = $($span.attr("data-stock-target"));
+            $target.replaceWith(data);
+        });
+
+        
+        //$(e.target).parent().parent().remove();
+
+
+        return false;
+
+    }
     $("input[data-submit-action='refresh']").click(ajaxListRefresh);
     $("input[data-submit-action='reset']").click(ajaxListClear);
     $("form[data-add-ajax='true']").submit(ajaxAddFormSubmit);
+    $("#stockTable").on("click", ".delete-me", ajaxRemoveRow);
 
+    //$(document).ready(function () {
+    //    $("#stockTable tr").mouseover(function () {
+    //        $(this).addClass('hover');
+    //    });
+
+    //    $("#stockTable tr").mouseout(function () {
+    //        $(this).removeClass('hover');
+    //    });
+    //});
     
+    //$("tr").hover(
+    //    function () {
+    //        $(this).addClass('hover');
+    //    },
+    //    function () {
+    //        $(this).removeClass('hover');
+    //    });
 
     
 });

@@ -4,26 +4,24 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-<legend>StockQuote</legend>
+<h2>Demo Stock Watch List</h2>
 
-<div>
-    <input type="submit" name="Refresh" id="Refresh" value="Refresh"
-           data-submit-action="refresh" data-submit-method="get"
-           data-submit-url="@Url.Action("Refresh")" data-stock-target="#stockList" />
+<fieldset>
+    <legend>StockQuote</legend>
+    <div>
+        <input type="submit" name="Refresh" id="Refresh" value="Refresh"
+               data-submit-action="refresh" data-submit-method="get"
+               data-submit-url="@Url.Action("Refresh")" data-stock-target="#stockList" />
 
-    <input type="submit" name="Reset" id="Reset" value="Clear List"
-           data-submit-action="reset" data-submit-method="delete"
-           data-submit-url="@Url.Action("Reset")" data-stock-target="#stockList" />
+        <input type="submit" name="Reset" id="Reset" value="Clear List"
+               data-submit-action="reset" data-submit-method="delete"
+               data-submit-url="@Url.Action("Reset")" data-stock-target="#stockList" />
 
-    <form id="addStock" method="post" action="@Url.Action("Add")" data-add-ajax="true" data-stock-target="#stockTable">
-        <input type="search" name="symbol" />
-        <input type="submit" value="Add" />
-    </form>
-</div>
-
+        <form id="addStock" method="post" action="@Url.Action("Add")" data-add-ajax="true" data-stock-target="#stockTable">
+            <input type="search" name="symbol" />
+            <input type="submit" value="Add" />
+        </form>
+    </div>
+</fieldset>
 @Html.Partial("_stocks", Model)
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

@@ -1,3 +1,16 @@
 ﻿.data-row:hover {
     background-color: silver;
+    
 }
+
+.delete-me {
+    height: 18px;
+    width: 18px;
+    display: block;
+}
+
+.data-row:hover .delete-me {
+    background-image: url(http://i.imgur.com/i18c75p.png);
+    cursor: pointer;
+}
+

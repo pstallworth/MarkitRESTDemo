@@ -80,6 +80,24 @@ namespace RESTDemo.Controllers
         }
 
         [HttpDelete]
+        public ActionResult Remove(string symbol)
+        {
+            foreach (StockQuote stock in stockList.ToList())
+            {
+                if (stock.Symbol == symbol)
+                {
+                    stockList.Remove(stock);                
+                }
+            }
+
+            var model = from r in stockList
+                        orderby r.Symbol
+                        select r;
+        
+            return PartialView("_stocks", model);
+        }
+
+        [HttpDelete]
         public ActionResult Reset()
         {
             stockList.Clear();
