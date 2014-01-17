@@ -83,6 +83,24 @@
     $("form[data-add-ajax='true']").submit(ajaxAddFormSubmit);
     $("#stockTable").on("click", ".delete-me", ajaxRemoveRow);
 
+    $(".change").each(function (index, elem) {
+        $el = $(this);
+        val = $el.text();
+        console.log("inside each");
+        if (isNaN(val))
+            return true;
+
+        console.log("is a number");
+        if (val > 0) {
+            console.log("set to green");
+            $el.addClass("gtext");
+        }
+        else {
+            console.log("set to red");
+            $el.addclass("rtext");
+        }
+    });
+
     //$(document).ready(function () {
     //    $("#stockTable tr").mouseover(function () {
     //        $(this).addClass('hover');

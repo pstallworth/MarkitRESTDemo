@@ -3,8 +3,8 @@
 <tr class="data-row">
     <td class="stock-symbol">@Model.Symbol</td>
     <td>@Model.LastPrice</td>
-    <td>@Model.Change</td>
-    <td>@Model.ChangePercent</td>
+    <td class="change">@Model.Change</td>
+    <td class="change">@Model.ChangePercent</td>
     <td>@Model.Volume</td>
     <td class="last-column">
         <span class="delete-me" data-action="@Url.Action("Remove")" data-stock-target="#stockTable" data-stock-method="delete"> </span>
