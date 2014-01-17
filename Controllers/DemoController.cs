@@ -72,7 +72,7 @@ namespace RESTDemo.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_stocks", model);
+                return PartialView("stockList", model);
             }
 
             return View("Index", model);
@@ -80,7 +80,7 @@ namespace RESTDemo.Controllers
         }
 
         [HttpDelete]
-        public ActionResult Remove(string symbol)
+        public string Remove(string symbol)
         {
             foreach (StockQuote stock in stockList.ToList())
             {
@@ -93,8 +93,8 @@ namespace RESTDemo.Controllers
             var model = from r in stockList
                         orderby r.Symbol
                         select r;
-        
-            return PartialView("_stocks", model);
+
+            return "ok";
         }
 
         [HttpDelete]

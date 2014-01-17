@@ -1,0 +1,15 @@
+﻿@model IEnumerable<RESTDemo.Models.StockQuote>
+
+    @foreach (var item in Model)
+    {
+        <tr class="data-row">
+            <td class="stock-symbol">@item.Symbol</td>
+            <td>@item.LastPrice</td>
+            <td class="change">@item.Change</td>
+            <td class="change">@item.ChangePercent</td>
+            <td>@item.Volume</td>
+            <td class="last-column">
+                <span class="delete-me" data-action="@Url.Action("Remove")" data-stock-method="delete"> </span>
+            </td>
+        </tr>
+    }

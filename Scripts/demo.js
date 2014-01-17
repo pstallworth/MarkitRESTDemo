@@ -10,7 +10,14 @@
 
         $.ajax(options).done(function (data) {
             var $target = $($input.attr("data-stock-target"));
-            $target.replaceWith(data);
+
+            $(".data-row").each(function (index, elem) {
+                $el = $(this);
+                $el.remove();
+            })
+
+            $target.append(data);
+
         });
 
         return false;
@@ -54,12 +61,10 @@
 
     var ajaxRemoveRow = function (e) {
 
-        console.log("Inside ajaxRemoveRow");
-        var $table = $(this);
         var $span = $(e.target);
         var $col = $span.parent();
+        var $row = $col.parent();
         var sym = $col.siblings('.stock-symbol').html();
-        console.log(sym);
         var options = {
             url: $span.attr("data-action"),
             type: $span.attr("data-stock-method"),
@@ -67,13 +72,9 @@
         };
 
         $.ajax(options).done(function (data) {
-            var $target = $($span.attr("data-stock-target"));
-            $target.replaceWith(data);
+            if (data === "ok")
+                $row.remove();
         });
-
-        
-        //$(e.target).parent().parent().remove();
-
 
         return false;
 
@@ -83,38 +84,22 @@
     $("form[data-add-ajax='true']").submit(ajaxAddFormSubmit);
     $("#stockTable").on("click", ".delete-me", ajaxRemoveRow);
 
-    $(".change").each(function (index, elem) {
-        $el = $(this);
-        val = $el.text();
+    //$(".change").each(function (index, elem) {
+    //    $el = $(this);
+    //    val = $el.text();
        
-        if (isNaN(val))
-            return true;
+    //    if (isNaN(val))
+    //        return true;
        
-        if (val > 0) {        
-            $el.addClass("gtext");
-        }
-        else {
-            $el.addclass("rtext");
-        }
-    });
-
-    //$(document).ready(function () {
-    //    $("#stockTable tr").mouseover(function () {
-    //        $(this).addClass('hover');
-    //    });
-
-    //    $("#stockTable tr").mouseout(function () {
-    //        $(this).removeClass('hover');
-    //    });
+    //    if (val > 0) {        
+    //        $el.addClass("gtext");
+    //    }
+    //    else {
+    //        $el.addclass("rtext");
+    //    }
     //});
-    
-    //$("tr").hover(
-    //    function () {
-    //        $(this).addClass('hover');
-    //    },
-    //    function () {
-    //        $(this).removeClass('hover');
-    //    });
+
+ 
 
     
 });
