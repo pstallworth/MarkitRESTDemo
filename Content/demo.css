@@ -1,6 +1,12 @@
-﻿.data-row:hover {
-    background-color: silver;
-    
+﻿.data-row td {
+
+}
+.data-row:hover {
+    background-color: silver; 
+}
+
+td.last-column {
+    border-bottom-style: none;
 }
 
 .delete-me {
@@ -13,4 +19,25 @@
     background-image: url(http://i.imgur.com/i18c75p.png);
     cursor: pointer;
 }
+
+td {
+
+}
+
+.num-pos {
+    color: green;
+}
+
+.num-neg {
+    color: red;
+}
+
+.num-zero {
+    color: blue;
+}
+
+.stock-symbol {
+    color: blue;
+}
+
 

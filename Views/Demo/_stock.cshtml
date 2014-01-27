@@ -1,12 +1,27 @@
-﻿@model RESTDemo.Models.StockQuote
+﻿@using RESTDemo.HtmlHelpers
+@model RESTDemo.Models.StockQuote
 
+@{
+    string cssClass;
+
+    if (Model.Change > 0) {
+        cssClass = "num-pos";
+    }
+    else if (Model.Change < 0) {
+        cssClass = "num-neg";
+    }
+    else {
+        cssClass = "num-zero";
+    }
+}
 <tr class="data-row">
     <td class="stock-symbol">@Model.Symbol</td>
     <td>@Model.LastPrice</td>
-    <td class="change">@Model.Change</td>
-    <td class="change">@Model.ChangePercent</td>
+    <td class="@cssClass">@Html.DisplayFor(modelItem => Model.Change)</td>
+    <td class="@cssClass">@Html.DisplayFor(modelItem => Model.ChangePercent)</td>
     <td>@Model.Volume</td>
     <td class="last-column">
         <span class="delete-me" data-action="@Url.Action("Remove")" data-stock-method="delete"> </span>
     </td>
 </tr>
+

@@ -1,6 +1,7 @@
 ﻿$(function() {
 
-    var ajaxListRefresh = function() {
+    var ajaxListRefresh = function () {
+        console.log("inside ajaxListRefres");
         var $input = $(this);       
         var options = {
             url: $input.attr("data-submit-url"),
@@ -17,7 +18,7 @@
             })
 
             $target.append(data);
-
+            //formatChange();
         });
 
         return false;
@@ -37,6 +38,7 @@
             //table selector, add row
             
             $target.append(response_data);
+            //formatChange();
                         
         });
 
@@ -79,25 +81,33 @@
         return false;
 
     }
+
+    function formatChange() {
+        $(".change").each(function (index, elem) {
+            $el = $(this);
+            val = $el.text();
+
+            if (isNaN(val))
+                return true;
+
+            if (val > 0.0) {
+                $el.addClass("num-pos");
+            }
+            else if (val < 0.0) {
+                $el.addClass("num-neg");
+            }
+            else
+                $el.addClass("num-zero");
+        });
+    }
+
     $("input[data-submit-action='refresh']").click(ajaxListRefresh);
+    /*$("#controls").on("click", "input[data-submit-action='refresh']", ajaxListRefresh);*/
     $("input[data-submit-action='reset']").click(ajaxListClear);
     $("form[data-add-ajax='true']").submit(ajaxAddFormSubmit);
     $("#stockTable").on("click", ".delete-me", ajaxRemoveRow);
 
-    //$(".change").each(function (index, elem) {
-    //    $el = $(this);
-    //    val = $el.text();
-       
-    //    if (isNaN(val))
-    //        return true;
-       
-    //    if (val > 0) {        
-    //        $el.addClass("gtext");
-    //    }
-    //    else {
-    //        $el.addclass("rtext");
-    //    }
-    //});
+
 
  
 

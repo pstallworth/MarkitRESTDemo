@@ -9,22 +9,15 @@ namespace RESTDemo.Controllers
 {
     public class DemoController : Controller
     {
-        //
         // GET: /Demo/
         private static List<StockQuote> stockList = new List<StockQuote>();
         
         public ActionResult Index()
         {
-            //List<StockQuote> stockList = new List<StockQuote>();
-            //stockList.Add(StockQuoteApi.GetStockQuote("CSCO"));
-            //stockList.Add(StockQuoteApi.GetStockQuote("HP"));
-            //stockList.Add(StockQuoteApi.GetStockQuote("P"));
-            //stockList.Add(StockQuoteApi.GetStockQuote("IBM"));
-
             var model = from r in stockList
                         orderby r.Symbol
                         select r;
-
+ 
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_stocks", model);
@@ -107,7 +100,5 @@ namespace RESTDemo.Controllers
 
             return RedirectToAction("Index");
         }
-
- 
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 namespace RESTDemo.Models
 {
@@ -18,8 +19,10 @@ namespace RESTDemo.Models
         [DataMember]
         public double LastPrice { get; set; }
         [DataMember]
+        [DisplayFormat(DataFormatString = "{0:0.00}")]
         public double Change { get; set; }
         [DataMember]
+        [DisplayFormat(DataFormatString = "{0:0.00}")]
         public double ChangePercent { get; set; }
         [DataMember]
         public string Timestamp { get; set; }
